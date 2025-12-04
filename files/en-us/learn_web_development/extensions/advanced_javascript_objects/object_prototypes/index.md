@@ -48,7 +48,7 @@ const myObject = {
 myObject.greet(); // Greetings from Madrid
 ```
 
-This is an object with one data property, `city`, and one method, `greet()`. If you type the object's name _followed by a period_ into the console, like `myObject.`, then the console will pop up a list of all the properties available to this object. You'll see that as well as `city` and `greet`, there are lots of other properties!
+This is an object with one data property, `city`, and one method, `greet()`. If you type the object's name _followed by a period_ into the console, like `myObject.`, then the console will pop up a list of all the properties available to this object. You'll see that in addition to `city` and `greet`, there are lots of other properties!
 
 ```plain
 __defineGetter__
@@ -77,7 +77,7 @@ It works (even if it's not obvious what `toString()` does).
 
 What are these extra properties, and where do they come from?
 
-Every object in JavaScript has a built-in property, which is called its **prototype**. The prototype is itself an object, so the prototype will have its own prototype, making what's called a **prototype chain**. The chain ends when we reach a prototype that has `null` for its own prototype.
+Every object in JavaScript has a built-in property, which is called its **prototype**. This prototype value is itself an object, so the prototype value will have its own prototype value, making what's called a **prototype chain**. The chain ends when we reach a prototype value that has `null` for its own prototype.
 
 > [!NOTE]
 > The property of an object that points to its prototype is **not** called `prototype`. Its name is not standard, but in practice all browsers use [`__proto__`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto). The standard way to access an object's prototype is the {{jsxref("Object/getPrototypeOf", "Object.getPrototypeOf()")}} method.
@@ -87,7 +87,7 @@ When you try to access a property of an object: if the property can't be found i
 So when we call `myObject.toString()`, the browser:
 
 - looks for `toString` in `myObject`
-- can't find it there, so looks in the prototype object of `myObject` for `toString`
+- can't find it there, so looks inside `myObject`'s prototype object for `toString`
 - finds it there, and calls it.
 
 What is the prototype for `myObject`? To find out, we can use the function `Object.getPrototypeOf()`:
@@ -103,15 +103,15 @@ This is an object called `Object.prototype`, and it is the most basic prototype,
 The prototype of an object is not always `Object.prototype`. Try this:
 
 ```js
-const myDate = new Date();
-let object = myDate;
+const myDateInstance = new Date();
 
+let retrievedPrototype = Object.getPrototypeOf(myDateInstance);
 do {
-  object = Object.getPrototypeOf(object);
-  console.log(object);
-} while (object);
+  console.log(retrievedPrototype);
+  retrievedPrototype = Object.getPrototypeOf(retrievedPrototype);
+} while (retrievedPrototype);
 
-// Date.prototype
+// Object { } 
 // Object { }
 // null
 ```
