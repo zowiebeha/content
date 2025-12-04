@@ -229,7 +229,7 @@ console.log(Object.hasOwn(irma, "greet")); // false
 
 Prototypes are a powerful and very flexible feature of JavaScript, making it possible to reuse code and combine objects.
 
-In particular they support a version of **inheritance**. Inheritance is a feature of object-oriented programming languages that lets programmers express the idea that some objects in a system are more specialized versions of other objects.
+In particular they support a version of **inheritance**. Inheritance is a feature of object-oriented programming languages which allows programmers express the idea that some objects in a system are more specialized versions of other objects.
 
 For example, if we're modeling a school, we might have _professors_ and _students_: they are both _people_, so have some features in common (for example, they both have names), but each might add extra features (for example, professors have a subject that they teach), or might implement the same feature in different ways. In an OOP system we might say that professors and students both **inherit from** people.
 
