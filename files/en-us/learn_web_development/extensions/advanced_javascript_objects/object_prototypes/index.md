@@ -193,9 +193,9 @@ Here we create:
 - an object `personPrototype`, which has a `greet()` method
 - a `Person()` constructor function which initializes the name of the person to create.
 
-We then put the methods defined in `personPrototype` onto the `Person` function's `prototype` property using [`Object.assign`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
+We then provide the `Person` function access to the methods defined in `personPrototype`, as we've set `Person`'s `prototype` value to `personPrototype` using [`Object.assign`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
 
-After this code, objects created using `Person()` will get `Person.prototype` as their prototype, which automatically contains the `greet` method.
+Now in the code above, objects constructed using `new Person()` will get `Person.prototype` as their prototype. When `greet` is called, the browser will walk up the prototype chain, starting with the prototype of the `Person` instance. `greet` will not be found here, so the prototype of the instance's prototype will be searched, i.e `Person.prototype`. `greet` will not be found here, so the prototype of `Person.prototype` will be searched, i.e `personPrototype`. Here the `greet` method will be found.
 
 ```js
 const reuben = new Person("Reuben");
